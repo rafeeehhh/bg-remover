@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Background Eraser</title>
+    <!-- Modern Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons for professional UI -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="imaging.css">
+    
+    <!-- Required headers for @imgly/background-removal optimal performance -->
+    <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin">
+    <meta http-equiv="Cross-Origin-Embedder-Policy" content="require-corp">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Background decorative elements -->
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+
+        <header class="glass-header">
+            <div class="logo">
+                <i class="ph-fill ph-magic-wand"></i>
+                <h1>MagicErase</h1>
+            </div>
+            <p class="subtitle">Professional, on-device background removal</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Initial Upload State -->
+            <section id="upload-section" class="upload-area glass-panel">
+                <input type="file" id="image-upload" accept="image/png, image/jpeg, image/webp" hidden />
+                <label for="image-upload" id="drop-zone" class="drop-zone">
+                    <div class="drop-content">
+                        <div class="icon-wrapper">
+                            <i class="ph ph-upload-simple"></i>
+                        </div>
+                        <h2>Upload an image</h2>
+                        <p>Drag and drop or click to browse</p>
+                        <span class="formats">Supports JPG, PNG, WEBP</span>
+                    </div>
+                </label>
+            </section>
+
+            <!-- Processing / Progress State -->
+            <section id="processing-section" class="processing-area glass-panel hidden">
+                <div class="loader-container">
+                    <div class="spinner"></div>
+                    <h2 id="processing-status">Initializing AI Engine...</h2>
+                    <p id="processing-details">This runs entirely in your browser. No data is uploaded.</p>
+                    <div class="progress-bar-container">
+                        <div id="progress-bar" class="progress-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Result State -->
+            <section id="result-section" class="result-area hidden">
+                <div class="comparison-container">
+                    <div class="image-wrapper glass-panel">
+                        <h3>Original</h3>
+                        <div class="img-preview-box">
+                            <img id="original-preview" src="" alt="Original Image">
+                        </div>
+                    </div>
+                    <div class="image-wrapper glass-panel highlight">
+                        <h3>Result</h3>
+                        <div class="img-preview-box transparent-bg">
+                            <img id="result-preview" src="" alt="Processed Image">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="actions-panel glass-panel">
+                    <button id="btn-reset" class="btn btn-secondary">
+                        <i class="ph ph-arrow-counter-clockwise"></i> Try Another
+                    </button>
+                    <button id="btn-download" class="btn btn-primary">
+                        <i class="ph ph-download-simple"></i> Download HD
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>100% Private &middot; Runs entirely on your device</p>
+        </footer>
+    </div>
+
+    <!-- Ensure type="module" so we can use import syntax in imaging.js -->
+    <script type="module" src="imaging.js"></script>
+</body>
+</html>
